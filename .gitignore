@@ -1,0 +1,5 @@
+# Used modules
+node_modules
+
+# Credentials
+config.json
