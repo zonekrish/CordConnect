@@ -9,7 +9,7 @@ module.exports = {
         const info = new EmbedBuilder()
             .setColor(0x700434)
             .setTitle("Information")
-            .setDescription("This bot is powered by CordConnect.");
+            .setDescription(interaction.client.user.tag + " is powered by CordConnect.");
 
         await interaction.reply({embeds:[info]});
     }
