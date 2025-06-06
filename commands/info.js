@@ -7,7 +7,7 @@ module.exports = {
 
     async execute(interaction) {
         const info = new EmbedBuilder()
-            .setColor(0x403c44)
+            .setColor(0x700434)
             .setTitle("Information")
             .setDescription("This bot is powered by CordConnect.");
 
