@@ -8,8 +8,8 @@ module.exports = {
     async execute(interaction) {
         const info = new EmbedBuilder()
             .setColor(0x700434)
-            .setTitle("Information")
-            .setDescription(interaction.client.user.tag + " is powered by CordConnect.");
+            .setTitle("CordConnect")
+            .setDescription(`\`${interaction.client.user.displayName}\` is powered by CordConnect.\n\nCordConnect allows chat logs from a Minecraft server to be posted onto a Discord server for offline players to see.`);
 
         await interaction.reply({embeds:[info]});
     }
