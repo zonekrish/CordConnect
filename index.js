@@ -15,7 +15,15 @@ for (const file of commands) {
 
     const filePath = path.join(foldersPath, file);
     const command = require(filePath);
-    client.commands.set(command.data.name, command);
+
+    if (command.data) {
+        
+        client.commands.set(command.data.name, command);
+
+    } else {
+        const name = file.split(".")[0]
+        client.commands.set(name, command);
+    }
 
 }
 
@@ -26,6 +34,30 @@ client.once(Events.ClientReady, () => {
 client.on(Events.InteractionCreate, async (interaction) => {
     if (interaction.isChatInputCommand()) {
         const command = interaction.client.commands.get(interaction.commandName);
+
+        try {
+
+            await command.execute(interaction);
+
+        } catch (error) {
+
+            console.error(error);
+
+            if (interaction.replied || interaction.deferred) {
+
+                await interaction.followUp({ content: "Error", flags: MessageFlags.Ephemeral });
+
+            } else {
+
+                await interaction.reply({ content: "Error", flags: MessageFlags.Ephemeral });
+
+            }
+        }
+
+    }
+
+    if (interaction.isButton()) {
+        const command = interaction.client.commands.get(interaction.customId);
 
         try {
 
